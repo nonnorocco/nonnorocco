@@ -3,7 +3,6 @@ title: "Timeline"
 description: "A placeholder timeline page for important moments."
 ---
 
-# Timeline
 
 This page can become a simple chronological story of important life events.
 

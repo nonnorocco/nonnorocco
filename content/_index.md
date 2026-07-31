@@ -3,7 +3,6 @@ title: "In Loving Memory"
 description: "A simple memorial site prepared for stories, photos, and cherished memories."
 ---
 
-# In Loving Memory
 
 This space is being prepared as a peaceful place to celebrate a life with stories, photographs, and remembrance.
 

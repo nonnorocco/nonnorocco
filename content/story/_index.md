@@ -3,7 +3,6 @@ title: "The Story"
 description: "A placeholder page for the life story and biography."
 ---
 
-# The Story
 
 This page is ready for a biography, meaningful reflections, and personal details.
 

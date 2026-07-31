@@ -3,7 +3,6 @@ title: "Memories"
 description: "A placeholder page for shared memories and messages."
 ---
 
-# Memories
 
 This page can hold messages from friends and family, short recollections, and reflections.
 

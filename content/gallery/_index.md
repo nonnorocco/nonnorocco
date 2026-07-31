@@ -3,7 +3,6 @@ title: "Gallery"
 description: "A placeholder gallery page for photos and videos."
 ---
 
-# Gallery
 
 This page is prepared for photos, videos, and visual memories.
 
