@@ -1,16 +1,31 @@
-## Hi there 👋
+# nonnorocco
 
-<!--
-**nonnorocco/nonnorocco** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+This site uses a modular Hugo structure that keeps content, media, layouts, and static files clearly separated.
 
-Here are some ideas to get you started:
+## Project structure
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- content/
+  - Main pages and sections
+  - gallery/, memories/, story/, timeline/
+  - shared/ for cross-section content
+  - per-section image folders for local media
+- assets/
+  - css/ for stylesheets
+  - js/ for scripts
+  - images/ for general image assets
+  - media/ for larger media files such as uploads, videos, or downloadable files
+- layouts/
+  - partials/ for reusable template blocks
+- static/
+  - files that should be served as-is
+
+## Media guidance
+
+- Keep page-specific images close to the related section in content/.
+- Put reusable visuals in assets/images/ or assets/media/.
+- Use layouts/partials/ to avoid repeating template logic.
+- Keep static/ limited to files that do not need processing.
+
+## Maintenance principle
+
+A good rule is: content belongs in content/, reusable assets belong in assets/, and shared presentation logic belongs in layouts/partials/.
