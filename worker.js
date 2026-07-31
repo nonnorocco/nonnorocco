@@ -2,14 +2,14 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Already authenticated?
     const cookie = request.headers.get("Cookie") || "";
 
+    // Already logged in
     if (cookie.includes("family_access=granted")) {
       return env.ASSETS.fetch(request);
     }
 
-    // Login form submission
+    // Handle password submission
     if (request.method === "POST" && url.pathname === "/login") {
       const form = await request.formData();
       const password = form.get("password");
@@ -34,8 +34,7 @@ export default {
     }
 
     // Login page
-    return new Response(
-      `
+    return new Response(`
       <!doctype html>
       <html>
       <head>
@@ -53,26 +52,22 @@ export default {
           }
         </style>
       </head>
+
       <body>
         <h1>Family Archive</h1>
+
         <form method="POST" action="/login">
-          <input 
-            type="password" 
-            name="password"
-            placeholder="Password">
+          <input type="password" name="password" placeholder="Password">
           <br>
-          <button type="submit">
-            Enter
-          </button>
+          <button type="submit">Enter</button>
         </form>
+
       </body>
       </html>
-      `,
-      {
-        headers: {
-          "Content-Type": "text/html"
-        }
+    `, {
+      headers: {
+        "Content-Type": "text/html"
       }
-    );
+    });
   }
 };
