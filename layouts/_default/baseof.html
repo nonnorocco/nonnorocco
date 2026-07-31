@@ -11,7 +11,13 @@
     <header>
       <nav>
         <a class="site-title" href="{{ "/" | relURL }}">{{ site.Title }}</a>
-        <a href="{{ "/" | relURL }}">Home</a>
+        <div>
+          <a href="{{ "/" | relURL }}">Home</a>
+          <a href="{{ "story/" | relURL }}">Story</a>
+          <a href="{{ "timeline/" | relURL }}">Timeline</a>
+          <a href="{{ "gallery/" | relURL }}">Gallery</a>
+          <a href="{{ "memories/" | relURL }}">Memories</a>
+        </div>
       </nav>
     </header>
 
