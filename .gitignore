@@ -1,0 +1,12 @@
+# Hugo generated site
+public/
+
+# Hugo build files
+resources/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
