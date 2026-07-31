@@ -1,11 +1,11 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "nonnorocco",
+  "main": "worker.js",
   "compatibility_date": "2026-07-31",
 
-  "main": "worker.js",
-
   "assets": {
-    "directory": "./public"
+    "directory": "./public",
+    "binding": "ASSETS"
   }
 }
