@@ -2,6 +2,9 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "nonnorocco",
   "compatibility_date": "2026-07-31",
+
+  "main": "worker.js",
+
   "assets": {
     "directory": "./public"
   }
