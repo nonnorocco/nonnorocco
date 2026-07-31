@@ -8,25 +8,27 @@
     <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
   </head>
   <body>
-    <header>
-      <nav>
-        <a class="site-title" href="{{ "/" | relURL }}">{{ site.Title }}</a>
-        <div>
-          <a href="{{ "/" | relURL }}">Home</a>
-          <a href="{{ "story/" | relURL }}">Story</a>
-          <a href="{{ "timeline/" | relURL }}">Timeline</a>
-          <a href="{{ "gallery/" | relURL }}">Gallery</a>
-          <a href="{{ "memories/" | relURL }}">Memories</a>
-        </div>
-      </nav>
-    </header>
+    <div class="page-shell">
+      <header class="site-header">
+        <nav class="container nav">
+          <a class="site-title" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+          <div class="nav-links">
+            <a href="{{ "/" | relURL }}">Home</a>
+            <a href="{{ "story/" | relURL }}">Story</a>
+            <a href="{{ "timeline/" | relURL }}">Timeline</a>
+            <a href="{{ "gallery/" | relURL }}">Gallery</a>
+            <a href="{{ "memories/" | relURL }}">Memories</a>
+          </div>
+        </nav>
+      </header>
 
-    <main>
-      {{ block "main" . }}{{ end }}
-    </main>
+      <main class="container">
+        {{ block "main" . }}{{ end }}
+      </main>
 
-    <footer>
-      <p>© {{ now.Year }} {{ site.Title }}</p>
-    </footer>
+      <footer class="container site-footer">
+        <p>© {{ now.Year }} {{ site.Title }}</p>
+      </footer>
+    </div>
   </body>
 </html>

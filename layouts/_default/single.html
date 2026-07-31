@@ -1,6 +1,11 @@
 {{ define "main" }}
-<article>
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
+<article class="article-content">
+  <header class="article-header">
+    <p class="eyebrow">Reflection</p>
+    <h1>{{ .Title }}</h1>
+  </header>
+  <div class="content-body">
+    {{ .Content }}
+  </div>
 </article>
 {{ end }}
