@@ -6,9 +6,10 @@ description: "A simple memorial site prepared for stories, photos, and cherished
 
 This space is being prepared as a peaceful place to celebrate a life with stories, photographs, and remembrance.
 
-## What this site can hold
+## What this archive can hold
 
-- A short biography or life story
+- A structured biography and life story
+- People, places, and events as distinct archival entities
 - A timeline of meaningful moments
 - A gallery for photos and videos
 - A page for shared memories and messages
@@ -16,6 +17,9 @@ This space is being prepared as a peaceful place to celebrate a life with storie
 ## Start exploring
 
 - [Story and biography](/story/)
+- [People](/people/)
+- [Places](/places/)
+- [Events](/events/)
 - [Timeline](/timeline/)
 - [Photo gallery](/gallery/)
 - [Memories and messages](/memories/)
