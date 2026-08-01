@@ -1,11 +1,13 @@
 #!/bin/bash
 set -e
 
-mkdir -p public
+hugo --gc --minify
 
 cat > public/_headers <<EOF
 /*
-  Basic-Auth: family $FAMILY_ARCHIVE_PASSWORD
+  Basic-Auth: family $PASSWORD
 EOF
 
-hugo --gc --minify
+echo "=== CHECKING HEADERS FILE ==="
+cat public/_headers
+echo "=============================="
