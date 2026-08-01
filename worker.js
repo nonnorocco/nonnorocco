@@ -1,18 +1,16 @@
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
     const cookie = request.headers.get("Cookie") || "";
 
-    // User already authenticated
-    if (cookie.includes("family_access=granted")) {
+    // Check authentication cookie
+    if (cookie.includes(`family_access=${env.SESSION_TOKEN}`)) {
       const response = await env.ASSETS.fetch(request);
 
+      // Prevent private pages from being cached publicly
       const headers = new Headers(response.headers);
-
-      // Never cache private HTML pages
-      if (headers.get("content-type")?.includes("text/html")) {
-        headers.set("Cache-Control", "private, no-store");
-      }
+      headers.set("Cache-Control", "private, no-store");
 
       return new Response(response.body, {
         status: response.status,
@@ -20,7 +18,7 @@ export default {
       });
     }
 
-    // Login attempt
+    // Handle login form submission
     if (request.method === "POST" && url.pathname === "/login") {
       const form = await request.formData();
       const password = form.get("password");
@@ -31,7 +29,7 @@ export default {
           headers: {
             "Location": "/",
             "Set-Cookie":
-              "family_access=granted; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=2592000",
+              `family_access=${env.SESSION_TOKEN}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=2592000`,
             "Cache-Control": "no-store"
           }
         });
@@ -48,23 +46,41 @@ export default {
 
     // Login page
     return new Response(`
-<!doctype html>
-<html>
-<head>
-<title>Family Archive</title>
-</head>
+      <!doctype html>
+      <html>
+      <head>
+        <title>Family Archive</title>
+        <style>
+          body {
+            font-family: sans-serif;
+            max-width: 400px;
+            margin: 80px auto;
+            text-align: center;
+          }
 
-<body>
-<h1>Family Archive</h1>
+          input, button {
+            padding: 10px;
+            margin: 5px;
+          }
+        </style>
+      </head>
 
-<form method="POST" action="/login">
-<input type="password" name="password">
-<button type="submit">Enter</button>
-</form>
+      <body>
+        <h1>Family Archive</h1>
 
-</body>
-</html>
-`, {
+        <form method="POST" action="/login">
+          <input 
+            type="password" 
+            name="password" 
+            placeholder="Password"
+          >
+          <br>
+          <button type="submit">Enter</button>
+        </form>
+
+      </body>
+      </html>
+    `, {
       headers: {
         "Content-Type": "text/html",
         "Cache-Control": "no-store"
