@@ -1,16 +1,17 @@
 export default {
   async fetch(request, env) {
-    console.log("Worker hit:", new URL(request.url).pathname);
     const url = new URL(request.url);
-
     const cookie = request.headers.get("Cookie") || "";
 
-    // Already logged in
+    // User already authenticated
     if (cookie.includes("family_access=granted")) {
-      return env.ASSETS.fetch(request);
+      const response = await env.ASSETS.fetch(request);
+
+      // Optional: allow caching of static assets
+      return response;
     }
 
-    // Handle password submission
+    // Login attempt
     if (request.method === "POST" && url.pathname === "/login") {
       const form = await request.formData();
       const password = form.get("password");
@@ -21,7 +22,8 @@ export default {
           headers: {
             "Location": "/",
             "Set-Cookie":
-              "family_access=granted; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=2592000"
+              "family_access=granted; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=2592000",
+            "Cache-Control": "no-store"
           }
         });
       }
@@ -29,30 +31,34 @@ export default {
       return new Response("Wrong password", {
         status: 401,
         headers: {
-          "Content-Type": "text/plain"
+          "Content-Type": "text/plain",
+          "Cache-Control": "no-store"
         }
       });
     }
 
     // Login page
     return new Response(`
-      <!doctype html>
-      <html>
-      <head>
-        <title>Family Archive</title>
-      </head>
-      <body>
-        <h1>Family Archive</h1>
+<!doctype html>
+<html>
+<head>
+<title>Family Archive</title>
+</head>
 
-        <form method="POST" action="/login">
-          <input type="password" name="password">
-          <button type="submit">Enter</button>
-        </form>
-      </body>
-      </html>
-    `, {
+<body>
+<h1>Family Archive</h1>
+
+<form method="POST" action="/login">
+<input type="password" name="password">
+<button type="submit">Enter</button>
+</form>
+
+</body>
+</html>
+`, {
       headers: {
-        "Content-Type": "text/html"
+        "Content-Type": "text/html",
+        "Cache-Control": "no-store"
       }
     });
   }
