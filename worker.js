@@ -7,8 +7,17 @@ export default {
     if (cookie.includes("family_access=granted")) {
       const response = await env.ASSETS.fetch(request);
 
-      // Optional: allow caching of static assets
-      return response;
+      const headers = new Headers(response.headers);
+
+      // Never cache private HTML pages
+      if (headers.get("content-type")?.includes("text/html")) {
+        headers.set("Cache-Control", "private, no-store");
+      }
+
+      return new Response(response.body, {
+        status: response.status,
+        headers
+      });
     }
 
     // Login attempt
