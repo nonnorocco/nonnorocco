@@ -10,3 +10,6 @@ Thumbs.db
 
 # Editor files
 .vscode/
+
+# folder for temp heavy images
+temp_images/
